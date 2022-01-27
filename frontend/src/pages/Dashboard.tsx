@@ -1,9 +1,10 @@
+import { SideNav } from "../components/SideNav/SideNav";
 import { Container } from "./Dashboard.style";
 
 export const Dashboard = () => {
   return (
     <Container>
-      <h1>Dashboard</h1>
+      <SideNav />
     </Container>
   );
 };
