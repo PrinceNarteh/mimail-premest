@@ -1,10 +1,13 @@
-import { Dashboard } from "./pages/Dashboard";
+import { AuthContextProvider } from "./context/auth.context";
+import { Router } from "./Router";
+import { GlobalStyle } from "./theme/globalStyle";
 
 function App() {
   return (
-    <div className="">
-      <Dashboard />
-    </div>
+    <AuthContextProvider>
+      <GlobalStyle />
+      <Router />
+    </AuthContextProvider>
   );
 }
 
