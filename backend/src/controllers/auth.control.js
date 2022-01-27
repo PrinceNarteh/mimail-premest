@@ -2,32 +2,30 @@ const User = require("../models/user.model");
 const jwt = require("jsonwebtoken");
 
 const handleErrors = (err) => {
-  let errors = { username: "", password: "", msg: "" };
+  let errors = {};
 
   if (err.message === "incorrect username") {
     errors.username = err.message;
-  }
-
-  if (err.message === "incorrect password") {
+  } else if (err.message === "incorrect password") {
     errors.password = err.message;
-  }
-
-  if (err.code === 11000) {
+  } else if (err.code === 11000) {
     errors.username = "the username is not available";
     return errors;
-  }
-
-  if (err.message.includes("user validation failed")) {
+  } else if (err.message.includes("user validation failed")) {
     Object.values(err.errors).forEach(({ properties }) => {
       errors[properties.path] = properties.message;
     });
+  } else {
+    errors.error = err.message;
   }
 
   return errors;
 };
 
 const generateToken = (user) => {
-  return jwt.sign({ id: user._id });
+  return jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+    expiresIn: "1h",
+  });
 };
 
 const userCtrl = {};
@@ -37,8 +35,8 @@ userCtrl.signup = async function (req, res) {
 
   try {
     let user = await User.create({ username, password });
-
-    res.status(201).json(user);
+    const token = generateToken(user);
+    res.status(201).json({ token, user });
   } catch (error) {
     const errObj = handleErrors(error);
     res.status(400).json(errObj);
@@ -50,8 +48,8 @@ userCtrl.login = async function (req, res) {
 
   try {
     const user = await User.login(username, password);
-
-    res.status(200).json(user);
+    const token = generateToken(user);
+    res.status(200).json({ token, user });
   } catch (error) {
     const errMsg = handleErrors(error);
     res.status(400).json(errMsg);

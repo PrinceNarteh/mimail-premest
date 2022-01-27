@@ -2,7 +2,13 @@ const mongoose = require("mongoose");
 
 exports.dbConnect = () => {
   //Set up default mongoose connection
-  mongoose.connect(process.env.dbURI);
+  mongoose
+    .connect(process.env.dbURI)
+    .then(() => console.log("Database connected successfully"))
+    .catch((err) => {
+      console.log(err);
+      process.exit(1);
+    });
 
   //Get the default connection
   var db = mongoose.connection;
