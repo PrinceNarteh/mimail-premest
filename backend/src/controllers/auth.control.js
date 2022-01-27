@@ -1,6 +1,7 @@
 const User = require("../models/user.model");
+const jwt = require("jsonwebtoken");
 
-const handlErrors = (err) => {
+const handleErrors = (err) => {
   let errors = { username: "", password: "", msg: "" };
 
   if (err.message === "incorrect username") {
@@ -25,6 +26,10 @@ const handlErrors = (err) => {
   return errors;
 };
 
+const generateToken = (user) => {
+  return jwt.sign({ id: user._id });
+};
+
 const userCtrl = {};
 
 userCtrl.signup = async function (req, res) {
@@ -35,7 +40,7 @@ userCtrl.signup = async function (req, res) {
 
     res.status(201).json(user);
   } catch (error) {
-    const errObj = handlErrors(error);
+    const errObj = handleErrors(error);
     res.status(400).json(errObj);
   }
 };
@@ -48,7 +53,7 @@ userCtrl.login = async function (req, res) {
 
     res.status(200).json(user);
   } catch (error) {
-    const errMsg = handlErrors(error);
+    const errMsg = handleErrors(error);
     res.status(400).json(errMsg);
   }
 };
