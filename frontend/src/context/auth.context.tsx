@@ -1,6 +1,6 @@
 import { createContext } from "react";
 
-interface IMail {
+export interface IMail {
   sender: string;
   recipient: string;
   read: boolean;
@@ -8,7 +8,9 @@ interface IMail {
   body: string;
 }
 
-interface IAuthContext {
+export interface IAuthContext {
+  loading: boolean;
+  error: object | null;
   token: string | null;
   user: {
     username: string;
@@ -19,6 +21,8 @@ interface IAuthContext {
 }
 
 const initialValue: IAuthContext = {
+  loading: false,
+  error: null,
   token: null,
   user: null,
   dispatch: () => {},

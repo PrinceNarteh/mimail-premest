@@ -1,11 +1,17 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export const MenuLink = () => {
+interface MenuLinkProps {
+  icon: React.ReactNode;
+  label: string;
+  to: string;
+}
+
+export const MenuLink = ({ icon, label, to }: MenuLinkProps) => {
   return (
-    <MenuLinkStyle>
-      <span className="icon">{}</span>
-      <span className="text">{}</span>
+    <MenuLinkStyle to={to}>
+      <span className="icon">{icon}</span>
+      <span className="text">{label}</span>
     </MenuLinkStyle>
   );
 };
