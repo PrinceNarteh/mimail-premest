@@ -4,7 +4,6 @@ import {
   Brand,
   Menus,
   Nav,
-  NavGroup,
   SideNavContainer,
   Toggle,
 } from "./SideNav.style";
