@@ -19,19 +19,23 @@ export const Nav = styled.nav`
   overflow: hidden;
 `;
 
-export const Toggle = styled.div`
+export const NavGroup = styled.div`
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+  background-color: red;
+`;
+
+export const Toggle = styled.label`
+  position: absolute;
+  right: 0;
   width: 6rem;
   height: 6rem;
   text-align: center;
   line-height: 6rem;
   color: white;
   cursor: pointer;
-
-  label {
-    width: 6rem;
-    height: 6rem;
-    background-color: red;
-  }
+  z-index: 1;
 `;
 
 export const Brand = styled.div`
