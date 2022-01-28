@@ -6,3 +6,7 @@ export const MainContainer = styled.div`
   margin-left: 6rem;
   transition: 0.3s;
 `;
+
+export const Heading = styled.h1`
+  margin: 0 0 2rem 2rem;
+`;

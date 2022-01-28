@@ -1,15 +1,5 @@
 import styled from "styled-components";
 
-export const SideNavContainer = styled.div`
-  input[type="checkbox"] {
-    display: none;
-  }
-
-  #toggle:checked + nav {
-    width: 30rem;
-  }
-`;
-
 export const Nav = styled.nav`
   position: fixed;
   width: 6rem;
@@ -46,6 +36,12 @@ export const Brand = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
+  p {
+    font-size: 2.3rem;
+    color: white;
+    margin-top: 1rem;
+  }
 `;
 
 export const Avatar = styled.div`
@@ -53,6 +49,10 @@ export const Avatar = styled.div`
   height: 10rem;
   border-radius: 50%;
   background-color: cyan;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 5rem;
 `;
 
 export const Menus = styled.ul`

@@ -1,25 +1,36 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { IAuthContext } from "../context/auth.context";
 
-const getSavedValue = (initialValue: any) => {
-  const data = localStorage.getItem("mi_mail");
-  const savedValue = data ? JSON.parse(data) : null;
-  if (savedValue) return savedValue;
-
-  if (initialValue instanceof Function) return initialValue();
-  return initialValue;
-};
-
-export const useLocalStorage = (
-  initialValue?: Omit<IAuthContext, "dispatch">
-) => {
-  const [value, setValue] = useState<Omit<IAuthContext, "dispatch">>(() =>
-    getSavedValue(initialValue)
-  );
-
-  useEffect(() => {
-    localStorage.setItem("mi_mail", JSON.stringify(initialValue));
-  }, [initialValue]);
-
-  return { value, setValue };
-};
+export function useLocalStorage(initialValue?: IAuthContext) {
+  // State to store our value
+  // Pass initial state function to useState so logic is only executed once
+  const [storedValue, setStoredValue] = useState<IAuthContext>(() => {
+    try {
+      // Get from local storage by key
+      const item = window.localStorage.getItem("mi_mail");
+      // Parse stored json or if none return initialValue
+      return item ? JSON.parse(item) : initialValue;
+    } catch (error) {
+      // If error also return initialValue
+      console.log(error);
+      return initialValue;
+    }
+  });
+  // Return a wrapped version of useState's setter function that ...
+  // ... persists the new value to localStorage.
+  const setValue = (value: IAuthContext) => {
+    try {
+      // Allow value to be a function so we have same API as useState
+      const valueToStore =
+        value instanceof Function ? value(storedValue) : value;
+      // Save state
+      setStoredValue(valueToStore);
+      // Save to local storage
+      window.localStorage.setItem("mi_mail", JSON.stringify(valueToStore));
+    } catch (error) {
+      // A more advanced implementation would handle the error case
+      console.log(error);
+    }
+  };
+  return { storedValue, setValue };
+}

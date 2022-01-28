@@ -2,15 +2,15 @@ import React, { useState } from "react";
 import { client } from "../api/axiosInstance";
 import { useAuth } from "../hooks/useAuth";
 import { AuthActionTypes } from "./../context/auth.action";
-import { useLocalStorage } from "./../hooks/useLocalStorage";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 
 export const Login = () => {
   const [formData, setFormData] = useState({ username: "", password: "" });
   const { dispatch } = useAuth();
-  const { setValue } = useLocalStorage();
   const navigate = useNavigate();
   const location = useLocation() as any;
+  const { setValue } = useLocalStorage();
 
   const onChangeHandler = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = evt.target;
@@ -23,7 +23,11 @@ export const Login = () => {
     try {
       const result = await client.post("/auth/login", formData);
       dispatch({ type: AuthActionTypes.LOGIN_SUCCESS, payload: result.data });
-      setValue({ loading: false, error: null, ...result.data });
+      setValue({
+        loading: false,
+        error: null,
+        ...result.data,
+      });
 
       const redirectPath = location.state?.path || "/";
       navigate(redirectPath, { replace: true });

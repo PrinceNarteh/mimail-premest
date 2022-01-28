@@ -1,5 +1,5 @@
 import { AuthContextProvider } from "./context/auth.context";
-import { Router } from "./Router";
+import { Router } from "./routes/Router";
 import { GlobalStyle } from "./theme/globalStyle";
 
 function App() {

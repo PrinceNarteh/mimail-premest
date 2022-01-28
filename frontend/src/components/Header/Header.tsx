@@ -1,5 +1,6 @@
 import React from "react";
+import { HeaderContainer } from "./Header.style";
 
 export const Header = () => {
-  return <div>header</div>;
+  return <HeaderContainer>header</HeaderContainer>;
 };

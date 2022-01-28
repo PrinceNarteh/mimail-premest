@@ -37,11 +37,11 @@ export const AuthContextProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const { value } = useLocalStorage(initialValue);
+  const { storedValue } = useLocalStorage(initialValue);
   const [{ loading, error, token, user }, dispatch] = useReducer(
     authReducer,
-    value,
-    () => value
+    storedValue,
+    () => storedValue
   );
   return (
     <AuthContext.Provider value={{ loading, error, token, user, dispatch }}>
