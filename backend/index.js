@@ -3,10 +3,13 @@ const express = require("express");
 const path = require("path");
 const app = express();
 const PORT = process.env.PORT || 4000;
+const cors = require("cors");
 
 const userRoute = require("./src/routes/user.route");
 const mailRoute = require("./src/routes/mail.route");
 const { dbConnect } = require("./src/database/dbConnection");
+
+app.use(cors());
 
 app.use(express.json());
 

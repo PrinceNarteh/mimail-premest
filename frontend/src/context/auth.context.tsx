@@ -1,4 +1,6 @@
-import { createContext } from "react";
+import { createContext, useReducer } from "react";
+import { authReducer } from "./auth.reducer";
+import { useLocalStorage } from "./../hooks/useLocalStorage";
 
 export interface IMail {
   sender: string;
@@ -35,7 +37,15 @@ export const AuthContextProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
+  const { value } = useLocalStorage(initialValue);
+  const [{ loading, error, token, user }, dispatch] = useReducer(
+    authReducer,
+    value,
+    () => value
+  );
   return (
-    <AuthContext.Provider value={initialValue}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ loading, error, token, user, dispatch }}>
+      {children}
+    </AuthContext.Provider>
   );
 };
