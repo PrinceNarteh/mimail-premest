@@ -17,6 +17,7 @@ export const Head = styled.div`
 
 export const Sender = styled.div`
   flex-basis: 20%;
+  margin-left: 2px;
   padding: 1rem 2rem;
   background-color: white;
 `;

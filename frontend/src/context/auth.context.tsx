@@ -3,6 +3,7 @@ import { authReducer } from "./auth.reducer";
 import { useLocalStorage } from "./../hooks/useLocalStorage";
 
 export interface IMail {
+  _id: string;
   sender: string;
   recipient: string;
   read: boolean;

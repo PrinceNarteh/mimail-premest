@@ -4,20 +4,22 @@ import styled from "styled-components";
 import { Sender, Content } from "./MailBox.style";
 
 interface MailItemProps {
-  id: string;
+  _id: string;
   sender: string;
-  content: string;
+  title: string;
+  body: string;
 }
 
-export const MailItem = ({ id, sender, content }: MailItemProps) => {
+export const MailItem = ({ _id, sender, title, body }: MailItemProps) => {
   const location = useLocation();
 
   const routeName = location.pathname === "/" ? "inbox" : location.pathname;
 
   return (
-    <MailItemStyle to={`${routeName}/${id}`}>
+    <MailItemStyle to={`${routeName}/${_id}`}>
       <Sender>{sender}</Sender>
-      <Content>{content}</Content>
+      <Sender>{title}</Sender>
+      <Content>{body}</Content>
     </MailItemStyle>
   );
 };

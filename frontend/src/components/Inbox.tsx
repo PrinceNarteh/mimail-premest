@@ -1,16 +1,15 @@
 import React from "react";
 import { MailItem } from "./Mail/MailItem";
-
-const mail = {
-  id: "123",
-  sender: "Patrick",
-  content: "Testing Mail",
-};
+import { useAuth } from "./../hooks/useAuth";
 
 export const Inbox = () => {
+  const { user } = useAuth();
+
   return (
     <div>
-      <MailItem {...mail} />
+      {user?.inbox.map((mail) => (
+        <MailItem {...mail} />
+      ))}
     </div>
   );
 };

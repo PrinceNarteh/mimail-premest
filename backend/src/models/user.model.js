@@ -18,10 +18,10 @@ const userSchema = new mongoose.Schema(
     sent: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "mail",
+        ref: "Mail",
       },
     ],
-    inbox: [{ type: mongoose.Schema.Types.ObjectId, ref: "mail" }],
+    inbox: [{ type: mongoose.Schema.Types.ObjectId, ref: "Mail" }],
   },
   {
     timestamps: true,
@@ -37,7 +37,9 @@ userSchema.pre("save", async function (next) {
 });
 
 userSchema.statics.login = async function (username, password) {
-  const user = await this.findOne({ username });
+  const user = await this.findOne({ username })
+    .populate("inbox")
+    .populate("sent");
 
   if (user) {
     const match = await bcrypt.compare(password, user.password);
@@ -52,5 +54,5 @@ userSchema.statics.login = async function (username, password) {
   throw new Error("Invalid credentials");
 };
 
-const User = mongoose.model("user", userSchema);
+const User = mongoose.model("User", userSchema);
 module.exports = User;
