@@ -16,6 +16,7 @@ import { AiOutlineStar } from "react-icons/ai";
 import { RiSpam2Line } from "react-icons/ri";
 import { MdOutlineForwardToInbox } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { capitalize } from "./../../helper/utils";
 
 export const SideNav = () => {
   const [toggle, setToggle] = useState<boolean>(true);
@@ -29,9 +30,7 @@ export const SideNav = () => {
         </Toggle>
         <Brand>
           <Avatar>P</Avatar>
-          <p>
-            {user?.username[0].toUpperCase()! + user?.username.substring(1)}
-          </p>
+          <p>{capitalize(user?.username!)}</p>
         </Brand>
         <Link to="send-mail">
           <RoundedButton fullWidth>+</RoundedButton>

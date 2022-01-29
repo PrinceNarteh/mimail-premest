@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { Sender, Content } from "./MailBox.style";
+import { capitalize } from "./../../helper/utils";
 
 interface MailItemProps {
   _id: string;
@@ -17,7 +18,7 @@ export const MailItem = ({ _id, sender, title, body }: MailItemProps) => {
 
   return (
     <MailItemStyle to={`${routeName}/${_id}`}>
-      <Sender>{sender}</Sender>
+      <Sender>{capitalize(sender)}</Sender>
       <Sender>{title}</Sender>
       <Content>{body}</Content>
     </MailItemStyle>
