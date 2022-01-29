@@ -30,12 +30,13 @@ export const Toggle = styled.label`
 
 export const Brand = styled.div`
   width: 30rem;
-  height: 20rem;
+  height: 18rem;
   display: flex;
   position: relative;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   flex-direction: column;
+  margin-bottom: 1rem;
 
   p {
     font-size: 2.3rem;
