@@ -1,5 +1,5 @@
+import { Outlet } from "react-router-dom";
 import { Head, MailBoxContainer } from "./MailBox.style";
-import { MailItem } from "./MailItem";
 
 export const MailBox = () => {
   return (
@@ -8,10 +8,7 @@ export const MailBox = () => {
         <h1>Mail Box</h1>
       </Head>
       <>
-        <MailItem />
-        <MailItem />
-        <MailItem />
-        <MailItem />
+        <Outlet />
       </>
     </MailBoxContainer>
   );
