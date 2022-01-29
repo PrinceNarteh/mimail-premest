@@ -32,7 +32,7 @@ mailCtrl.send = async function (req, res) {
 mailCtrl.deliver = function (req, res) {
   const actionTypes = {
     INBOX: "inbox",
-    SENTBOX: "sent"
+    SENTBOX: "sent",
   };
 
   const { username, type } = req.body;
@@ -71,6 +71,26 @@ mailCtrl.sync = async function (req, res) {
   try {
     await Mail.findOneAndUpdate({ _id: id }, { $set: { read: state } });
     res.status(200).json({ success: true });
+  } catch (error) {
+    res.status(400).json({ success: false, message: err.message });
+  }
+};
+
+mailCtrl.toggleStarred = async function (req, res) {
+  const { mailId } = req.params;
+
+  try {
+    let mail = await Mail.findById({ _id: mailId });
+    if (!mail) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Mail not found" });
+    }
+    mail = await Mail.findOneAndUpdate(
+      { _id: mailId },
+      { $set: { starred: !mail.starred } }
+    );
+    res.status(200).json({ success: true, mail });
   } catch (error) {
     res.status(400).json({ success: false, message: err.message });
   }

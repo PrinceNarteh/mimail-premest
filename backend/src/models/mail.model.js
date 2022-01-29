@@ -14,6 +14,10 @@ const mailSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    starred: {
+      type: Boolean,
+      default: false,
+    },
     title: {
       type: String,
       required: [true, "enter a message title"],
