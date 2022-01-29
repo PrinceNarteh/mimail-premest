@@ -33,15 +33,15 @@ export const SideNav = () => {
           />
           <MenuLink
             label="Sent"
-            to="/inbox"
+            to="/sent"
             icon={<GrSend size={30} color="#fff" />}
           />
           <MenuLink
             label="Starred"
-            to="/inbox"
+            to="/starred"
             icon={<AiOutlineStar size={30} />}
           />
-          <MenuLink label="Spam" to="/inbox" icon={<RiSpam2Line size={30} />} />
+          <MenuLink label="Spam" to="/spam" icon={<RiSpam2Line size={30} />} />
           {/* <MenuLink
             label="Inbox"
             to="/inbox"
