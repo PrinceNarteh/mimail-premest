@@ -9,4 +9,5 @@ export const MainContainer = styled.div`
 
 export const Heading = styled.h1`
   margin: 0 0 2rem 2rem;
+  font-size: 3rem;
 `;

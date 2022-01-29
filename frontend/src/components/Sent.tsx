@@ -4,8 +4,8 @@ import { MailItem } from "./Mail/MailItem";
 export const Sent = () => {
   return (
     <div>
-      <MailItem />
-      <MailItem />
+      {/* <MailItem />
+      <MailItem /> */}
     </div>
   );
 };
