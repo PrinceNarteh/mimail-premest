@@ -1,21 +1,41 @@
 const User = require("../models/user.model");
 const Mail = require("../models/mail.model");
+const AppError = require("../helpers/appError");
 
 const mailCtrl = {};
 
-mailCtrl.send = async function (req, res) {
-  const newMail = Mail(req.body);
-
+mailCtrl.send = async function (req, res, next) {
   try {
+    // checks if user exists
+    const { userId } = req;
+    const user = await User.findById(userId);
+    if (!user) {
+      return next(new AppError("User not found", 404));
+    }
+
+    // checks if recipient exists
+    const recipient = await User.findOne({ username: req.body.recipient });
+    if (!recipient) {
+      return next(
+        new AppError(
+          `Could not send mail to ${req.body.recipient}. Please kindly check the username.`,
+          404
+        )
+      );
+    }
+
+    // create new mail
+    const newMail = Mail({ sender: user.username, ...req.body });
     let mail = await newMail.save();
+
     if (mail) {
       await User.updateOne(
-        { username: req.body.sender },
+        { username: user.username },
         { $push: { sent: [mail._id] } }
       );
 
       await User.updateOne(
-        { username: req.body.recipient },
+        { username: user.username },
         { $push: { inbox: [mail._id] } }
       );
 
@@ -25,7 +45,7 @@ mailCtrl.send = async function (req, res) {
       return;
     }
 
-    throw new Error("could not send mail");
+    throw new AppError("could not send mail", 401);
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }
