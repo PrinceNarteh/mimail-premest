@@ -2,7 +2,8 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import { Header } from "../Header/Header";
 import { MailBox } from "../Mail/MailBox";
-import { Heading, MainContainer } from "./Main.style";
+import { Heading } from "../Shared/Shared";
+import { MainContainer } from "./Main.style";
 
 export const Main = () => {
   const location = useLocation();

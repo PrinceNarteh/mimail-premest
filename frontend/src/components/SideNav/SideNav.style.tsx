@@ -1,5 +1,4 @@
-import { Link } from "react-router-dom";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 export const Nav = styled.nav`
   position: fixed;
@@ -102,23 +101,4 @@ export const MenuItem = styled.li`
     box-shadow: 3.5rem -3.5rem 0 1rem #fff;
     pointer-events: none;
   }
-`;
-
-export const RoundedButton = styled.button`
-  width: ${({ fullWidth }: { fullWidth?: boolean }) => fullWidth && "90%"};
-  background: cyan;
-  color: teal;
-  padding: 1rem 0;
-  border: none;
-  border-radius: 5rem;
-  margin: 0.8rem;
-  text-decoration: none;
-  font-size: 2rem;
-  cursor: pointer;
-
-  ${({ fullWidth }: { fullWidth?: boolean }) =>
-    !fullWidth &&
-    css`
-      padding: 1rem 5rem;
-    `}
 `;

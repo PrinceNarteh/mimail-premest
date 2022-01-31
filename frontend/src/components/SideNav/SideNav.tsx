@@ -1,12 +1,5 @@
 import { MenuLink } from "./MenuLink";
-import {
-  Avatar,
-  Brand,
-  Menus,
-  Nav,
-  RoundedButton,
-  Toggle,
-} from "./SideNav.style";
+import { Avatar, Brand, Menus, Nav, Toggle } from "./SideNav.style";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { useState } from "react";
 import { useAuth } from "./../../hooks/useAuth";
@@ -17,6 +10,7 @@ import { RiSpam2Line } from "react-icons/ri";
 import { MdOutlineForwardToInbox } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { capitalize } from "./../../helper/utils";
+import { RoundedButton } from "../Shared/Shared";
 
 export const SideNav = () => {
   const [toggle, setToggle] = useState<boolean>(true);

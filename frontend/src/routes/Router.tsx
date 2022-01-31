@@ -8,6 +8,7 @@ import { Login } from "../pages/Login";
 import { ProtectedRoutes } from "./ProtectedRoutes";
 import { MailDetail } from "./../components/Mail/MailDetail";
 import { SendMail } from "../components/Mail/SendMail";
+import { SignUp } from "./../pages/SignUp";
 
 export const Router = () => {
   return (
@@ -25,6 +26,7 @@ export const Router = () => {
           </Route>
         </Route>
         <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
       </Routes>
     </BrowserRouter>
   );

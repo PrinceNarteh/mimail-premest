@@ -34,8 +34,9 @@ userCtrl.signup = async function (req, res) {
   const { username, password } = req.body;
 
   try {
-    let user = await User.create({ username, password });
-    const token = generateToken(user);
+    // let user = await User.create({ username, password });
+    console.log(req.body);
+    // const token = generateToken(user);
     res.status(201).json({ token, user });
   } catch (error) {
     const errObj = handleErrors(error);
