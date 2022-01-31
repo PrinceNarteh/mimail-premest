@@ -8,7 +8,7 @@ export const Sent = () => {
   return (
     <div>
       {user?.sent.map((mail) => (
-        <MailItem {...mail} />
+        <MailItem key={mail._id} {...mail} />
       ))}
     </div>
   );

@@ -7,16 +7,18 @@ export const MailBoxContainer = styled.div`
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   border-radius: 5px;
   overflow: hidden;
+  position: relative;
 `;
 
 export const Head = styled.div`
   background-color: teal;
-  padding: 1rem;
   color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 4rem;
 `;
 
 export const Sender = styled.div`
-  flex-basis: 20%;
   margin-left: 2px;
   padding: 1rem 2rem;
   background-color: white;

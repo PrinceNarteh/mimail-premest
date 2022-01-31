@@ -9,6 +9,7 @@ export interface IMail {
   read: boolean;
   title: string;
   body: string;
+  starred: boolean;
 }
 
 export interface IAuthContext {
@@ -44,6 +45,7 @@ export const AuthContextProvider = ({
     storedValue,
     () => storedValue
   );
+
   return (
     <AuthContext.Provider value={{ loading, error, token, user, dispatch }}>
       {children}

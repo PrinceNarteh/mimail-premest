@@ -100,6 +100,7 @@ mailCtrl.sync = async function (req, res) {
 
 mailCtrl.toggleStarred = async function (req, res) {
   const { mailId } = req.params;
+  console.log(req);
 
   try {
     let mail = await Mail.findById({ _id: mailId });
@@ -113,7 +114,8 @@ mailCtrl.toggleStarred = async function (req, res) {
       { $set: { starred: !mail.starred } }
     );
     res.status(200).json({ success: true, mail });
-  } catch (error) {
+  } catch (err) {
+    console.log(err);
     res.status(400).json({ success: false, message: err.message });
   }
 };

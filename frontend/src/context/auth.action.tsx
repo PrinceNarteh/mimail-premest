@@ -1,3 +1,5 @@
+import { IMail } from "./auth.context";
+
 export const AuthActionTypes = {
   LOGIN: "LOGIN",
   LOGIN_SUCCESS: "LOGIN_SUCCESS",
@@ -12,4 +14,8 @@ export const AuthAction = {
     payload: { username, password },
   }),
   logout: () => ({ type: AuthActionTypes.LOGOUT }),
+  toggleStarred: (mail: IMail, routeName: string) => ({
+    type: AuthActionTypes.STARRED_INBOX_MAIL,
+    payload: { mail, routeName },
+  }),
 };

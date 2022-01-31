@@ -24,10 +24,28 @@ export const authReducer = (state: IState, action: IAction): IState => {
     }
     case AuthActionTypes.STARRED_INBOX_MAIL: {
       const user = state.user;
-      user?.inbox.map((mail) => {
-        if (mail._id === action.payload._id) return action.payload;
-        return mail;
-      });
+      const routeName = action.payload.routeName.substring(1);
+
+      if (routeName === "inbox") {
+        user?.inbox.map((mail) => {
+          if (mail._id === action.payload.mail.mail._id) {
+            console.log("found");
+            return action.payload.mail;
+          }
+          console.log("Not Found");
+          return mail;
+        });
+      } else if (routeName === "sent") {
+        user?.sent.map((mail) => {
+          if (mail._id === action.payload.mail.mail._id) {
+            console.log("found");
+            return action.payload.mail;
+          }
+          console.log(action.payload);
+          return mail;
+        });
+      }
+      console.log(user);
       return { ...state, user };
     }
     case AuthActionTypes.LOGOUT:
