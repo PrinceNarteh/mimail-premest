@@ -22,6 +22,14 @@ export const authReducer = (state: IState, action: IAction): IState => {
         user: action.payload.user,
       };
     }
+    case AuthActionTypes.STARRED_INBOX_MAIL: {
+      const user = state.user;
+      user?.inbox.map((mail) => {
+        if (mail._id === action.payload._id) return action.payload;
+        return mail;
+      });
+      return { ...state, user };
+    }
     case AuthActionTypes.LOGOUT:
       return { loading: false, error: null, user: null, token: null };
     default:

@@ -11,10 +11,11 @@ export const Heading = styled.h1`
     fontSize ? `${fontSize}rem` : "3rem"};
   text-align: ${({ textAlign }: HeadingProps) =>
     textAlign ? textAlign : "left"};
+  color: #333;
 `;
 
 export const Paragraph = styled.p`
-  font-size: 2rem;
+  font-size: 1.8rem;
   color: #333;
 `;
 
@@ -55,14 +56,18 @@ export const CardContainer = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 `;
 
 export const Card = styled.div`
+  width: 50rem;
   max-width: 50rem;
-  box-shadow: 0 0 5px teal;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   padding: 2rem;
 `;
-export const Form = styled.form``;
+export const Form = styled.form`
+  width: 100%;
+`;
 
 export const RoundedButton = styled.button`
   width: ${({ fullWidth }: { fullWidth?: boolean }) => fullWidth && "90%"};

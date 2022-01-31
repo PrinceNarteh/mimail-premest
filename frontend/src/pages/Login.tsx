@@ -2,8 +2,20 @@ import React, { useState } from "react";
 import { client } from "../api/axiosInstance";
 import { useAuth } from "../hooks/useAuth";
 import { AuthActionTypes } from "./../context/auth.action";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import { useLocalStorage } from "../hooks/useLocalStorage";
+import {
+  CardContainer,
+  FormGroup,
+  Input,
+  Label,
+  Card,
+  Form,
+  Heading,
+  RoundedButton,
+  Paragraph,
+} from "../components/Shared/Shared";
+import styled from "styled-components";
 
 export const Login = () => {
   const [formData, setFormData] = useState({ username: "", password: "" });
@@ -37,24 +49,51 @@ export const Login = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={onSubmitHandler}>
-        <input
-          type="text"
-          name="username"
-          placeholder="Username"
-          value={formData.username}
-          onChange={onChangeHandler}
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={formData.password}
-          onChange={onChangeHandler}
-        />
-        <input type="submit" value="Login" />
-      </form>
-    </div>
+    <>
+      <Head>
+        <h1>MiMail</h1>
+      </Head>
+      <CardContainer>
+        <Card>
+          <Heading fontSize={5} textAlign="center">
+            Login
+          </Heading>
+          <Form onSubmit={onSubmitHandler}>
+            <FormGroup>
+              <Label htmlFor="username">Username</Label>
+              <Input
+                name="username"
+                type="text"
+                value={formData.username}
+                onChange={onChangeHandler}
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label htmlFor="password">Password</Label>
+              <Input
+                name="password"
+                type="password"
+                value={formData.password}
+                onChange={onChangeHandler}
+              />
+            </FormGroup>
+            <RoundedButton type="submit">Sign Up</RoundedButton>
+          </Form>
+          <Paragraph>
+            Already have an account? Login <Link to="/login">Here</Link>
+          </Paragraph>
+        </Card>
+      </CardContainer>
+    </>
   );
 };
+
+const Head = styled.div`
+  position: fixed;
+  line-height: 6rem;
+  color: teal;
+  width: 100%;
+  padding-left: 10rem;
+  height: 6rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+`;
