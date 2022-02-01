@@ -1,7 +1,5 @@
 import { AuthActionTypes } from "./auth.action";
-import { IAuthContext } from "./auth.context";
-
-type IState = Omit<IAuthContext, "dispatch">;
+import { IState } from "./auth.context";
 
 interface IAction {
   type: string;
@@ -29,27 +27,23 @@ export const authReducer = (state: IState, action: IAction): IState => {
       if (routeName === "inbox") {
         user?.inbox.map((mail) => {
           if (mail._id === action.payload.mail.mail._id) {
-            console.log("found");
             return action.payload.mail;
           }
-          console.log("Not Found");
           return mail;
         });
       } else if (routeName === "sent") {
         user?.sent.map((mail) => {
           if (mail._id === action.payload.mail.mail._id) {
-            console.log("found");
             return action.payload.mail;
           }
-          console.log(action.payload);
           return mail;
         });
       }
-      console.log(user);
       return { ...state, user };
     }
-    case AuthActionTypes.LOGOUT:
+    case AuthActionTypes.LOGOUT: {
       return { loading: false, error: null, user: null, token: null };
+    }
     default:
       return state;
   }

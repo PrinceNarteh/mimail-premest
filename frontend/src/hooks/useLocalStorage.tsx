@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { IAuthContext } from "../context/auth.context";
+import { IState } from "../context/auth.context";
 
-export function useLocalStorage(initialValue?: IAuthContext) {
-  const [storedValue, setStoredValue] = useState<IAuthContext>(() => {
+export function useLocalStorage(initialValue?: IState) {
+  const [storedValue, setStoredValue] = useState<IState>(() => {
     try {
       const item = window.localStorage.getItem("mi_mail");
       return item ? JSON.parse(item) : initialValue;
@@ -12,7 +12,7 @@ export function useLocalStorage(initialValue?: IAuthContext) {
     }
   });
   // Re
-  const setValue = (value: IAuthContext) => {
+  const setValue = (value: IState) => {
     try {
       const valueToStore =
         value instanceof Function ? value(storedValue) : value;
