@@ -4,7 +4,9 @@ import { useAuth } from "../hooks/useAuth";
 import { MailItem } from "./Mail/MailItem";
 
 export const Sent = () => {
-  const { user } = useAuth();
+  const {
+    state: { user },
+  } = useAuth();
 
   return (
     <div>

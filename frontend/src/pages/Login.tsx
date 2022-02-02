@@ -1,21 +1,21 @@
 import React, { useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import styled from "styled-components";
 import { client } from "../api/axiosInstance";
-import { useAuth } from "../hooks/useAuth";
-import { AuthActionTypes } from "./../context/auth.action";
-import { useNavigate, useLocation, Link } from "react-router-dom";
-import { useLocalStorage } from "../hooks/useLocalStorage";
 import {
+  Card,
   CardContainer,
+  Form,
   FormGroup,
+  Heading,
   Input,
   Label,
-  Card,
-  Form,
-  Heading,
-  RoundedButton,
   Paragraph,
+  RoundedButton,
 } from "../components/Shared/Shared";
-import styled from "styled-components";
+import { useAuth } from "../hooks/useAuth";
+import { useLocalStorage } from "../hooks/useLocalStorage";
+import { AuthActionTypes } from "./../context/auth.action";
 
 export const Login = () => {
   const [formData, setFormData] = useState({ username: "", password: "" });

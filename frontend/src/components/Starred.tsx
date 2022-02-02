@@ -4,7 +4,9 @@ import { MailItem } from "./Mail/MailItem";
 import { MailType } from "../context/auth.types";
 
 export const Starred = () => {
-  const { user } = useAuth();
+  const {
+    state: { user },
+  } = useAuth();
 
   const inboxMail = user?.inbox.filter((mail: MailType) => mail.starred)!;
   const sentMail = user?.sent.filter((mail: MailType) => mail.starred)!;

@@ -4,8 +4,9 @@ import { useAuth } from "./../hooks/useAuth";
 import { MailType } from "../context/auth.types";
 
 export const Inbox = () => {
-  const { user } = useAuth();
-  console.log(user?.inbox);
+  const {
+    state: { user },
+  } = useAuth();
 
   return (
     <div>
