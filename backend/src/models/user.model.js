@@ -37,15 +37,13 @@ userSchema.pre("save", async function (next) {
 });
 
 userSchema.statics.login = async function (username, password) {
-  const user = await this.findOne({ username })
-    .populate("inbox")
-    .populate("sent");
+  const user = await this.findOne({ username });
 
   if (user) {
     const match = await bcrypt.compare(password, user.password);
 
     if (match) {
-      return user;
+      return { user: { username: user.username } };
     }
 
     throw new Error("Invalid credentials");

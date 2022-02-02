@@ -20,7 +20,7 @@ export const authReducer = (state: StateType, action: IAction): StateType => {
         user: action.payload.user,
       };
     }
-    case AuthActionTypes.STARRED_INBOX_MAIL: {
+    case AuthActionTypes.TOGGLE_STARRED: {
       const user = state.user;
       const routeName = action.payload.routeName.substring(1);
 

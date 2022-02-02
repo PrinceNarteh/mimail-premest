@@ -5,7 +5,7 @@ export const AuthActionTypes = {
   LOGIN_SUCCESS: "LOGIN_SUCCESS",
   LOGIN_FAIL: "LOGIN_FAIL",
   LOGOUT: "LOGOUT",
-  STARRED_INBOX_MAIL: "STARRED_MAIL",
+  TOGGLE_STARRED: "TOGGLE_STARRED",
 };
 
 export const AuthAction = {
@@ -15,7 +15,7 @@ export const AuthAction = {
   }),
   logout: () => ({ type: AuthActionTypes.LOGOUT }),
   toggleStarred: (mail: MailType, routeName: string) => ({
-    type: AuthActionTypes.STARRED_INBOX_MAIL,
+    type: AuthActionTypes.TOGGLE_STARRED,
     payload: { mail, routeName },
   }),
 };
