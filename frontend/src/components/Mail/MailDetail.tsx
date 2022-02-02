@@ -10,17 +10,17 @@ export const MailDetail = () => {
   const [mail, setMail] = useState<MailType>();
   const { routeName, mailId } = useParams();
   const {
-    state: { user },
+    state: { inbox, sent },
   } = useAuth();
 
   useEffect(() => {
     let data;
     if (routeName) {
-      data = routeName === "inbox" ? user?.inbox : user?.sent;
+      data = routeName === "inbox" ? inbox : sent;
     }
     const currentMail = data?.find((mail: MailType) => mail._id === mailId);
     setMail(currentMail);
-  }, [mailId, routeName, user?.inbox, user?.sent]);
+  }, [mailId, routeName, inbox, sent]);
 
   if (!mail) {
     return <div>Loading</div>;

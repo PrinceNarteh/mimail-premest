@@ -5,16 +5,13 @@ import { MailItem } from "./Mail/MailItem";
 
 export const Sent = () => {
   const {
-    state: { user },
+    state: { sent },
   } = useAuth();
-
-  console.log(user);
 
   return (
     <div>
-      {user?.sent.map((mail: MailType) => (
-        <MailItem key={mail._id} {...mail} />
-      ))}
+      {sent &&
+        sent.map((mail: MailType) => <MailItem key={mail._id} {...mail} />)}
     </div>
   );
 };

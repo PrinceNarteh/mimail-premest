@@ -19,7 +19,7 @@ import { AuthActionTypes } from "./../context/auth.action";
 
 export const Login = () => {
   const [formData, setFormData] = useState({ username: "", password: "" });
-  const { dispatch } = useAuth();
+  const { state, dispatch } = useAuth();
   const navigate = useNavigate();
   const location = useLocation() as any;
   const { setValue } = useLocalStorage();
@@ -36,9 +36,8 @@ export const Login = () => {
       const result = await client.post("/auth/login", formData);
       dispatch({ type: AuthActionTypes.LOGIN_SUCCESS, payload: result.data });
       setValue({
-        loading: false,
-        error: null,
-        ...result.data,
+        ...state,
+        ...result.data.user,
       });
 
       const redirectPath = location.state?.path || "/";

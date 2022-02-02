@@ -9,12 +9,10 @@ export type MailType = {
 };
 
 export type StateType = {
-  loading: boolean;
-  error: object | null;
   token: string | null;
   user: {
     username: string;
-    sent: MailType[];
-    inbox: MailType[];
   } | null;
+  sent: MailType[];
+  inbox: MailType[];
 };

@@ -35,7 +35,7 @@ mailCtrl.send = async function (req, res, next) {
       );
 
       await User.updateOne(
-        { username: user.username },
+        { username: req.body.recipient },
         { $push: { inbox: [mail._id] } }
       );
 
@@ -94,7 +94,7 @@ mailCtrl.getMails = async (req, res) => {
     if (!user) {
       return next(new AppError("User not found", 404));
     }
-    return res.status(201).json({ mails: [...user.inbox, ...user.sent] });
+    return res.status(201).json({ inbox: user.inbox, send: user.sent });
   } catch (err) {
     return next(new AppError(err.message, 404));
   }

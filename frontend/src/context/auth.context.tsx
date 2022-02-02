@@ -4,10 +4,10 @@ import { useLocalStorage } from "./../hooks/useLocalStorage";
 import { StateType } from "./auth.types";
 
 const defaultState: StateType = {
-  loading: false,
-  error: null,
   token: null,
   user: null,
+  inbox: [],
+  sent: [],
 };
 
 export const AuthContext = createContext<{

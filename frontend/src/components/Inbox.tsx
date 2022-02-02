@@ -5,14 +5,13 @@ import { MailType } from "../context/auth.types";
 
 export const Inbox = () => {
   const {
-    state: { user },
+    state: { inbox },
   } = useAuth();
 
   return (
     <div>
-      {user?.inbox.map((mail: MailType) => (
-        <MailItem key={mail._id} {...mail} />
-      ))}
+      {inbox &&
+        inbox.map((mail: MailType) => <MailItem key={mail._id} {...mail} />)}
     </div>
   );
 };
