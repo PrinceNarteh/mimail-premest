@@ -1,12 +1,12 @@
 import { AuthActionTypes } from "./auth.action";
-import { IState } from "./auth.context";
+import { StateType } from "./auth.types";
 
 interface IAction {
   type: string;
   payload?: any;
 }
 
-export const authReducer = (state: IState, action: IAction): IState => {
+export const authReducer = (state: StateType, action: IAction): StateType => {
   switch (action.type) {
     case AuthActionTypes.LOGIN:
       return { ...state, loading: true };

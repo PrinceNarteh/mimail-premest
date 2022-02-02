@@ -1,48 +1,26 @@
 import { createContext, useEffect, useReducer } from "react";
 import { authReducer } from "./auth.reducer";
 import { useLocalStorage } from "./../hooks/useLocalStorage";
+import { StateType } from "./auth.types";
 
-export interface IMail {
-  _id: string;
-  sender: string;
-  recipient: string;
-  read: boolean;
-  title: string;
-  body: string;
-  starred: boolean;
-}
-
-export interface IState {
-  state: {
-    loading: boolean;
-    error: object | null;
-    token: string | null;
-    user: {
-      username: string;
-      sent: IMail[];
-      inbox: IMail[];
-    } | null;
-  };
-  dispatch?: React.Dispatch<any>;
-}
-
-const initialState: IState = {
-  state: {
-    loading: false,
-    error: null,
-    token: null,
-    user: null,
-  },
+const defaultState: StateType = {
+  loading: false,
+  error: null,
+  token: null,
+  user: null,
 };
 
-export const AuthContext = createContext(initialState);
+export const AuthContext = createContext<{
+  state: StateType;
+  dispatch: React.Dispatch<any>;
+}>({ state: defaultState, dispatch: () => null });
 
 export const AuthContextProvider = ({
   children,
 }: {
   children: React.ReactNode;
 }) => {
-  const { storedValue, setValue } = useLocalStorage(initialState);
+  const { storedValue, setValue } = useLocalStorage(defaultState);
   const [state, dispatch] = useReducer(
     authReducer,
     storedValue,
