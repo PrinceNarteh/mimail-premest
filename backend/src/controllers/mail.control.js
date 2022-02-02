@@ -87,6 +87,19 @@ mailCtrl.deliver = function (req, res) {
   }
 };
 
+mailCtrl.getMails = async (req, res) => {
+  const { userId } = req;
+  try {
+    const user = await User.findById(userId).populate("inbox").populate("sent");
+    if (!user) {
+      return next(new AppError("User not found", 404));
+    }
+    return res.status(201).json({ mails: [...user.inbox, ...user.sent] });
+  } catch (err) {
+    return next(new AppError(err.message, 404));
+  }
+};
+
 mailCtrl.sync = async function (req, res) {
   const { state, id } = req.body;
 
