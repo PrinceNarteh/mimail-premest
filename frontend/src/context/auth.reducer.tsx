@@ -1,5 +1,5 @@
 import { AuthActionTypes } from "./auth.action";
-import { StateType } from "./auth.types";
+import { MailType, StateType } from "./auth.types";
 
 interface IAction {
   type: string;
@@ -25,19 +25,25 @@ export const authReducer = (state: StateType, action: IAction): StateType => {
       const routeName = action.payload.routeName.substring(1);
 
       if (routeName === "inbox") {
-        user?.inbox.map((mail) => {
-          if (mail._id === action.payload.mail.mail._id) {
+        const inbox: any = user?.inbox.map((mail: MailType) => {
+          if (mail._id === action.payload.mail._id) {
             return action.payload.mail;
           }
           return mail;
         });
+        if (user) {
+          user.inbox = inbox;
+        }
       } else if (routeName === "sent") {
-        user?.sent.map((mail) => {
-          if (mail._id === action.payload.mail.mail._id) {
+        const sent: any = user?.sent.map((mail) => {
+          if (mail._id === action.payload.mail._id) {
             return action.payload.mail;
           }
           return mail;
         });
+        if (user) {
+          user.sent = sent;
+        }
       }
       return { ...state, user };
     }

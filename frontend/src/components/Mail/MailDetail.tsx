@@ -9,7 +9,9 @@ import { MailType } from "./../../context/auth.types";
 export const MailDetail = () => {
   const [mail, setMail] = useState<MailType>();
   const { routeName, mailId } = useParams();
-  const { user } = useAuth();
+  const {
+    state: { user },
+  } = useAuth();
 
   useEffect(() => {
     let data;

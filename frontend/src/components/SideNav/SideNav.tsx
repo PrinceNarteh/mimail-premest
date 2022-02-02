@@ -14,7 +14,9 @@ import { RoundedButton } from "../Shared/Shared";
 
 export const SideNav = () => {
   const [toggle, setToggle] = useState<boolean>(true);
-  const { user } = useAuth();
+  const {
+    state: { user },
+  } = useAuth();
   return (
     <>
       <HiddenInput type="checkbox" id="toggle" />

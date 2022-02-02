@@ -8,6 +8,8 @@ export const Sent = () => {
     state: { user },
   } = useAuth();
 
+  console.log(user);
+
   return (
     <div>
       {user?.sent.map((mail: MailType) => (

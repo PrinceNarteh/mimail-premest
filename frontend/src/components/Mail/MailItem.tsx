@@ -29,8 +29,8 @@ export const MailItem = ({
 
   const toggleStarred = async () => {
     try {
-      const mail = await client.post(`/mail/starred/${_id}`);
-      dispatch(AuthAction.toggleStarred(mail.data, routeName));
+      const response = await client.post(`/mail/starred/${_id}`);
+      dispatch(AuthAction.toggleStarred(response.data.mail, routeName));
     } catch (err) {
       console.log(err);
     }
@@ -46,7 +46,7 @@ export const MailItem = ({
         )}
       </Action>
       <MailItemStyle to={`${routeName}/${_id}`}>
-        <Sender>{capitalize(sender)}</Sender>
+        <Sender>{sender && capitalize(sender)}</Sender>
         <Sender>{title}</Sender>
         <Content>{body}</Content>
       </MailItemStyle>
