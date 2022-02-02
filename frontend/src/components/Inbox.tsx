@@ -1,6 +1,7 @@
 import React from "react";
 import { MailItem } from "./Mail/MailItem";
 import { useAuth } from "./../hooks/useAuth";
+import { MailType } from "../context/auth.types";
 
 export const Inbox = () => {
   const { user } = useAuth();
@@ -8,7 +9,7 @@ export const Inbox = () => {
 
   return (
     <div>
-      {user?.inbox.map((mail) => (
+      {user?.inbox.map((mail: MailType) => (
         <MailItem key={mail._id} {...mail} />
       ))}
     </div>

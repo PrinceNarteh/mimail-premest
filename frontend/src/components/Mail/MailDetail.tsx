@@ -4,10 +4,10 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { capitalize } from "../../helper/utils";
 import { useAuth } from "../../hooks/useAuth";
-import { IMail } from "./../../context/auth.context";
+import { MailType } from "./../../context/auth.types";
 
 export const MailDetail = () => {
-  const [mail, setMail] = useState<IMail>();
+  const [mail, setMail] = useState<MailType>();
   const { routeName, mailId } = useParams();
   const { user } = useAuth();
 
@@ -16,7 +16,7 @@ export const MailDetail = () => {
     if (routeName) {
       data = routeName === "inbox" ? user?.inbox : user?.sent;
     }
-    const currentMail = data?.find((mail) => mail._id === mailId);
+    const currentMail = data?.find((mail: MailType) => mail._id === mailId);
     setMail(currentMail);
   }, [mailId, routeName, user?.inbox, user?.sent]);
 

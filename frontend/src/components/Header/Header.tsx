@@ -1,6 +1,6 @@
 import React from "react";
-import { HeaderContainer, Logo } from "./Header.style";
 import { AiOutlineSetting } from "react-icons/ai";
+import { HeaderContainer, Logo } from "./Header.style";
 
 export const Header = () => {
   return (
