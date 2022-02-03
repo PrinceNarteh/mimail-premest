@@ -1,7 +1,7 @@
 import { createContext, useEffect, useReducer } from "react";
 import { authReducer } from "./auth.reducer";
-import { useLocalStorage } from "./../hooks/useLocalStorage";
 import { MailType } from "../mail/mail.context";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 
 export type StateType = {
   token: string | null;

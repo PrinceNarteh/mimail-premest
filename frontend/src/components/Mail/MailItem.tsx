@@ -6,7 +6,7 @@ import { capitalize } from "./../../helper/utils";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { client } from "../../api/axiosInstance";
 import { useAuth } from "../../hooks/useAuth";
-import { AuthAction } from "../../context/auth.action";
+import { AuthAction } from "../../context/auth/auth.action";
 
 interface MailItemProps {
   _id: string;

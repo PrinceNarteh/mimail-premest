@@ -1,4 +1,4 @@
-import { MailType } from "./auth.types";
+import { MailType } from "../mail/mail.context";
 
 export const AuthActionTypes = {
   LOGIN: "LOGIN",

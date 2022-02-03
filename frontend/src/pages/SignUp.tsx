@@ -12,7 +12,7 @@ import {
   RoundedButton,
   Paragraph,
 } from "../components/Shared/Shared";
-import { AuthActionTypes } from "../context/auth.action";
+import { AuthActionTypes } from "../context/auth/auth.action";
 import { useAuth } from "../hooks/useAuth";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 
