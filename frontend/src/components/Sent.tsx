@@ -1,17 +1,19 @@
 import React from "react";
 import { MailType } from "../context/mail/mail.context";
-import { useAuth } from "../hooks/useAuth";
+import { useAppContext } from "../hooks/useAppContext";
 import { MailItem } from "./Mail/MailItem";
 
 export const Sent = () => {
   const {
-    state: { sent },
-  } = useAuth();
+    state: { mails },
+  } = useAppContext();
 
   return (
     <div>
-      {sent &&
-        sent.map((mail: MailType) => <MailItem key={mail._id} {...mail} />)}
+      {mails.sent &&
+        mails.sent.map((mail: MailType) => (
+          <MailItem key={mail._id} {...mail} />
+        ))}
     </div>
   );
 };

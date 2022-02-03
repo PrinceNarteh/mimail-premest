@@ -4,23 +4,23 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { MailType } from "../../context/mail/mail.context";
 import { capitalize } from "../../helper/utils";
-import { useAuth } from "../../hooks/useAuth";
+import { useAppContext } from "../../hooks/useAppContext";
 
 export const MailDetail = () => {
   const [mail, setMail] = useState<MailType>();
   const { routeName, mailId } = useParams();
   const {
-    state: { inbox, sent },
-  } = useAuth();
+    state: { mails },
+  } = useAppContext();
 
   useEffect(() => {
     let data;
     if (routeName) {
-      data = routeName === "inbox" ? inbox : sent;
+      data = routeName === "inbox" ? mails.inbox : mails.sent;
     }
     const currentMail = data?.find((mail: MailType) => mail._id === mailId);
     setMail(currentMail);
-  }, [mailId, routeName, inbox, sent]);
+  }, [mailId, routeName, mails.inbox, mails.sent]);
 
   if (!mail) {
     return <div>Loading</div>;

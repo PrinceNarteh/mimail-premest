@@ -1,13 +1,13 @@
 import { Navigate, Outlet, useLocation } from "react-router-dom";
-import { useAuth } from "./../hooks/useAuth";
+import { useAppContext } from "../hooks/useAppContext";
 
 export const ProtectedRoutes = () => {
   const {
-    state: { user },
-  } = useAuth();
+    state: { auth },
+  } = useAppContext();
   const location = useLocation();
 
-  return user ? (
+  return auth.isLoggedIn ? (
     <Outlet />
   ) : (
     <Navigate to="/login" state={{ path: location.pathname }} />

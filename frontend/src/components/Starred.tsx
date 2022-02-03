@@ -1,16 +1,16 @@
 import React from "react";
 import { MailType } from "../context/mail/mail.context";
-import { useAuth } from "../hooks/useAuth";
+import { useAppContext } from "../hooks/useAppContext";
 import { MailItem } from "./Mail/MailItem";
 
 export const Starred = () => {
   const {
-    state: { inbox, sent },
-  } = useAuth();
+    state: { mails },
+  } = useAppContext();
 
-  const inboxMail = inbox && inbox.filter((mail: MailType) => mail.starred)!;
-  const sentMail = sent && sent.filter((mail: MailType) => mail.starred)!;
-  const starredMails: MailType[] = [];
+  const inboxMail = mails.inbox.filter((mail: MailType) => mail.starred)!;
+  const sentMail = mails.sent.filter((mail: MailType) => mail.starred)!;
+  const starredMails: MailType[] = [...inboxMail, ...sentMail];
 
   return (
     <div>

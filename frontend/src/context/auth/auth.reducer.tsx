@@ -1,6 +1,6 @@
 import { MailType } from "../mail/mail.context";
+import { StateType } from "../mainContext";
 import { AuthActionTypes } from "./auth.action";
-import { StateType } from "./auth.context";
 
 interface IAction {
   type: string;
@@ -12,12 +12,17 @@ export const authReducer = (state: StateType, action: IAction): StateType => {
     case AuthActionTypes.LOGIN_SUCCESS: {
       return {
         ...state,
-        token: action.payload.token,
-        user: action.payload.user,
+        auth: {
+          isLoggedIn: true,
+          token: action.payload.token,
+          user: action.payload.user,
+        },
       };
     }
     case AuthActionTypes.TOGGLE_STARRED: {
-      let { inbox, sent } = state;
+      let {
+        mails: { inbox, sent },
+      } = state;
       const routeName = action.payload.routeName.substring(1);
 
       if (routeName === "inbox") {
@@ -38,10 +43,13 @@ export const authReducer = (state: StateType, action: IAction): StateType => {
         });
         sent = newSent;
       }
-      return { ...state, inbox, sent };
+      return { ...state, mails: { inbox, sent } };
     }
     case AuthActionTypes.LOGOUT: {
-      return { user: null, token: null, inbox: [], sent: [] };
+      return {
+        auth: { isLoggedIn: false, user: null, token: null },
+        mails: { inbox: [], sent: [] },
+      };
     }
     default:
       return state;

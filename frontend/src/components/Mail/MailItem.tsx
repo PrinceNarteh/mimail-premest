@@ -5,7 +5,7 @@ import { Sender, Content } from "./MailBox.style";
 import { capitalize } from "./../../helper/utils";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { client } from "../../api/axiosInstance";
-import { useAuth } from "../../hooks/useAuth";
+import { useAppContext } from "../../hooks/useAppContext";
 import { AuthAction } from "../../context/auth/auth.action";
 
 interface MailItemProps {
@@ -23,7 +23,7 @@ export const MailItem = ({
   body,
   starred,
 }: MailItemProps) => {
-  const { dispatch } = useAuth();
+  const { dispatch } = useAppContext();
   const location = useLocation();
   const routeName = location.pathname === "/" ? "inbox" : location.pathname;
 

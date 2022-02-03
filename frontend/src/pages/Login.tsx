@@ -13,14 +13,13 @@ import {
   Paragraph,
   RoundedButton,
 } from "../components/Shared/Shared";
-import { useAuth } from "../hooks/useAuth";
-import { useLocalStorage } from "../hooks/useLocalStorage";
 import { AuthActionTypes } from "../context/auth/auth.action";
-import { MailAction } from "../context/mail/mail.action";
+import { useAppContext } from "../hooks/useAppContext";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 
 export const Login = () => {
   const [formData, setFormData] = useState({ username: "", password: "" });
-  const { state, dispatch } = useAuth();
+  const { state, dispatch } = useAppContext();
   const navigate = useNavigate();
   const location = useLocation() as any;
   const { setValue } = useLocalStorage();

@@ -13,7 +13,7 @@ import {
   Paragraph,
 } from "../components/Shared/Shared";
 import { AuthActionTypes } from "../context/auth/auth.action";
-import { useAuth } from "../hooks/useAuth";
+import { useAppContext } from "../hooks/useAppContext";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 
 interface User {
@@ -26,7 +26,7 @@ export const SignUp = () => {
     username: "",
     password: "",
   });
-  const { dispatch } = useAuth();
+  const { dispatch } = useAppContext();
   const navigate = useNavigate();
   const location = useLocation() as any;
   const { setValue } = useLocalStorage();

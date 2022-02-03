@@ -3,16 +3,17 @@ import { client } from "../api/axiosInstance";
 import { Main } from "../components/Main/Main";
 import { SideNav } from "../components/SideNav/SideNav";
 import { MailAction } from "../context/mail/mail.action";
-import { useAuth } from "../hooks/useAuth";
+import { useAppContext } from "../hooks/useAppContext";
 import { Container } from "./Dashboard.style";
 
 export const Dashboard = () => {
-  const { dispatch } = useAuth();
+  const { dispatch } = useAppContext();
 
   useEffect(() => {
     const getMails = async () => {
       try {
         const mails = await client.post("/mails/get-mails");
+        console.log(mails);
         dispatch(MailAction.addMails(mails.data));
       } catch (error) {
         console.log(error);

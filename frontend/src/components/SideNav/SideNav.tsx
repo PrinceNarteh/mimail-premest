@@ -7,15 +7,15 @@ import { RiSpam2Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { RoundedButton } from "../Shared/Shared";
 import { capitalize } from "./../../helper/utils";
-import { useAuth } from "./../../hooks/useAuth";
+import { useAppContext } from "../../hooks/useAppContext";
 import { HiddenInput } from "./HiddenInput";
 import { MenuLink } from "./MenuLink";
 import { Avatar, Brand, Menus, Nav, Toggle } from "./SideNav.style";
 
 export const SideNav = () => {
   const {
-    state: { user },
-  } = useAuth();
+    state: { auth },
+  } = useAppContext();
   const [toggle, setToggle] = useState<boolean>(true);
 
   return (
@@ -26,8 +26,8 @@ export const SideNav = () => {
           {toggle ? <FaBars size={25} /> : <FaTimes size={25} />}
         </Toggle>
         <Brand>
-          <Avatar>{user?.username[0].toUpperCase()}</Avatar>
-          <p>{capitalize(user?.username)}</p>
+          <Avatar>{auth.user?.username[0].toUpperCase()}</Avatar>
+          <p>{capitalize(auth.user?.username)}</p>
         </Brand>
         <Link to="send-mail">
           <RoundedButton fullWidth>+</RoundedButton>

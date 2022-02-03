@@ -1,4 +1,4 @@
-import { StateType } from "../auth/auth.context";
+import { StateType } from "../mainContext";
 
 interface ActionType {
   type: string;

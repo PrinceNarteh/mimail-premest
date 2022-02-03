@@ -94,7 +94,7 @@ mailCtrl.getMails = async (req, res, next) => {
     if (!user) {
       return next(new AppError("User not found", 404));
     }
-    return res.status(201).json({ inbox: user.inbox, send: user.sent });
+    return res.status(201).json({ inbox: user.inbox, sent: user.sent });
   } catch (err) {
     return next(new AppError(err.message, 404));
   }
