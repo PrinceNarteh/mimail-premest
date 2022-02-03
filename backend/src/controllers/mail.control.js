@@ -87,7 +87,7 @@ mailCtrl.deliver = function (req, res) {
   }
 };
 
-mailCtrl.getMails = async (req, res) => {
+mailCtrl.getMails = async (req, res, next) => {
   const { userId } = req;
   try {
     const user = await User.findById(userId).populate("inbox").populate("sent");

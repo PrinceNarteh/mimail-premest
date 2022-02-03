@@ -43,7 +43,7 @@ userSchema.statics.login = async function (username, password) {
     const match = await bcrypt.compare(password, user.password);
 
     if (match) {
-      return { username: user.username };
+      return { username: user.username, _id: user._id };
     }
 
     throw new Error("Invalid credentials");

@@ -13,6 +13,7 @@ exports.authRequired = (req, res, next) => {
     if (err) {
       return next(new AppError(err.message, 401));
     }
+    console.log(payload);
     req.userId = payload.id;
   });
 

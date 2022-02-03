@@ -1,32 +1,22 @@
-import { MenuLink } from "./MenuLink";
-import { Avatar, Brand, Menus, Nav, Toggle } from "./SideNav.style";
+import { useState } from "react";
+import { AiOutlineStar } from "react-icons/ai";
 import { FaBars, FaTimes } from "react-icons/fa";
-import { useEffect, useState } from "react";
+import { GrSend } from "react-icons/gr";
+import { MdOutlineForwardToInbox } from "react-icons/md";
+import { RiSpam2Line } from "react-icons/ri";
+import { Link } from "react-router-dom";
+import { RoundedButton } from "../Shared/Shared";
+import { capitalize } from "./../../helper/utils";
 import { useAuth } from "./../../hooks/useAuth";
 import { HiddenInput } from "./HiddenInput";
-import { GrSend } from "react-icons/gr";
-import { AiOutlineStar } from "react-icons/ai";
-import { RiSpam2Line } from "react-icons/ri";
-import { MdOutlineForwardToInbox } from "react-icons/md";
-import { Link } from "react-router-dom";
-import { capitalize } from "./../../helper/utils";
-import { RoundedButton } from "../Shared/Shared";
-import { useLocalStorage } from "../../hooks/useLocalStorage";
+import { MenuLink } from "./MenuLink";
+import { Avatar, Brand, Menus, Nav, Toggle } from "./SideNav.style";
 
 export const SideNav = () => {
   const {
     state: { user },
   } = useAuth();
   const [toggle, setToggle] = useState<boolean>(true);
-  const [name, setName] = useState("");
-  const { storedValue } = useLocalStorage();
-
-  useEffect(() => {
-    setName(user?.username!);
-  }, [user?.username]);
-
-  console.log(user);
-  console.log(storedValue);
 
   return (
     <>

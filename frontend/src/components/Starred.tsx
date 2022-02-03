@@ -1,7 +1,7 @@
 import React from "react";
+import { MailType } from "../context/mail/mail.context";
 import { useAuth } from "../hooks/useAuth";
 import { MailItem } from "./Mail/MailItem";
-import { MailType } from "../context/auth.types";
 
 export const Starred = () => {
   const {

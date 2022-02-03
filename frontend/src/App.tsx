@@ -1,7 +1,7 @@
-import { AuthContextProvider } from "./context/auth.context";
+import { IconContext } from "react-icons/lib";
+import { AuthContextProvider } from "./context/auth/auth.context";
 import { Router } from "./routes/Router";
 import { GlobalStyle } from "./theme/globalStyle";
-import { IconContext } from "react-icons/lib";
 import { theme } from "./theme/theme";
 
 function App() {

@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import { MailType } from "../../context/mail/mail.context";
 import { capitalize } from "../../helper/utils";
 import { useAuth } from "../../hooks/useAuth";
-import { MailType } from "./../../context/auth.types";
 
 export const MailDetail = () => {
   const [mail, setMail] = useState<MailType>();

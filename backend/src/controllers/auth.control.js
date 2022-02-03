@@ -49,6 +49,7 @@ userCtrl.login = async function (req, res) {
 
   try {
     const user = await User.login(username, password);
+    console.log(user);
     const token = generateToken(user);
     res.status(200).json({ token, user });
   } catch (error) {

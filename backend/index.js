@@ -13,8 +13,8 @@ app.use(cors());
 
 app.use(express.json());
 
-app.use("/api/auth/", userRoute);
-app.use("/api/mail", mailRoute);
+app.use("/api/auth", userRoute);
+app.use("/api/mails", mailRoute);
 
 app.get("/", (req, res) => {
   res.status(400).sendFile(path.join(__dirname + "/src/pages/index.html"));

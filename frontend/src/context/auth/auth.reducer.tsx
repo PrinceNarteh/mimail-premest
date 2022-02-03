@@ -1,5 +1,6 @@
+import { MailType } from "../mail/mail.context";
 import { AuthActionTypes } from "./auth.action";
-import { MailType, StateType } from "./auth.types";
+import { StateType } from "./auth.context";
 
 interface IAction {
   type: string;

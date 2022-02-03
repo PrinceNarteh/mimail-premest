@@ -1,7 +1,7 @@
 import React from "react";
-import { MailItem } from "./Mail/MailItem";
+import { MailType } from "../context/mail/mail.context";
 import { useAuth } from "./../hooks/useAuth";
-import { MailType } from "../context/auth.types";
+import { MailItem } from "./Mail/MailItem";
 
 export const Inbox = () => {
   const {
