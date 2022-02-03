@@ -15,7 +15,7 @@ import {
 } from "../components/Shared/Shared";
 import { useAuth } from "../hooks/useAuth";
 import { useLocalStorage } from "../hooks/useLocalStorage";
-import { AuthActionTypes } from "./../context/auth.action";
+import { AuthActionTypes } from "../context/auth/auth.action";
 
 export const Login = () => {
   const [formData, setFormData] = useState({ username: "", password: "" });
@@ -39,6 +39,9 @@ export const Login = () => {
         ...state,
         ...result.data.user,
       });
+
+      const mails = await client.post("/mail/get-mails");
+      dispatch({ Action });
 
       const redirectPath = location.state?.path || "/";
       navigate(redirectPath, { replace: true });

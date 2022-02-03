@@ -7,12 +7,3 @@ export type MailType = {
   body: string;
   starred: boolean;
 };
-
-export type StateType = {
-  token: string | null;
-  user: {
-    username: string;
-  } | null;
-  sent: MailType[];
-  inbox: MailType[];
-};

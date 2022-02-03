@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { StateType } from "../context/auth.types";
+import { StateType } from "../context/auth/auth.context";
 
 export function useLocalStorage(initialValue?: StateType) {
   const [storedValue, setStoredValue] = useState<StateType>(() => {

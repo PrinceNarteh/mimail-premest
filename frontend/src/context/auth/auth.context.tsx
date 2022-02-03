@@ -1,7 +1,16 @@
 import { createContext, useEffect, useReducer } from "react";
 import { authReducer } from "./auth.reducer";
 import { useLocalStorage } from "./../hooks/useLocalStorage";
-import { StateType } from "./auth.types";
+import { MailType } from "../mail/mail.context";
+
+export type StateType = {
+  token: string | null;
+  user: {
+    username: string;
+  } | null;
+  sent: MailType[];
+  inbox: MailType[];
+};
 
 const defaultState: StateType = {
   token: null,
