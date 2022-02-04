@@ -4,6 +4,7 @@ export const MailActionTypes = {
   ADD_MAIL: "ADD_MAIL",
   ADD_MAILS: "ADD_MAILS",
   DELETE_MAIL: "DELETE_MAIL",
+  TOGGLE_STARRED: "TOGGLE_STARRED",
 };
 
 export const MailAction = {
@@ -18,5 +19,9 @@ export const MailAction = {
   deleteMail: (mailId: string, category: string) => ({
     type: MailActionTypes.DELETE_MAIL,
     payload: { category, mailId },
+  }),
+  toggleStarred: (mail: MailType, routeName: string) => ({
+    type: MailActionTypes.TOGGLE_STARRED,
+    payload: { mail, routeName },
   }),
 };
