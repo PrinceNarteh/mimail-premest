@@ -1,12 +1,12 @@
 import React from "react";
+import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
-import { Sender, Content } from "./MailBox.style";
-import { capitalize } from "./../../helper/utils";
-import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { client } from "../../api/axiosInstance";
+import { MailAction } from "../../context/mail/mail.action";
 import { useAppContext } from "../../hooks/useAppContext";
-import { AuthAction } from "../../context/auth/auth.action";
+import { capitalize } from "./../../helper/utils";
+import { Content, Sender } from "./MailBox.style";
 
 interface MailItemProps {
   _id: string;
@@ -30,7 +30,7 @@ export const MailItem = ({
   const toggleStarred = async () => {
     try {
       const response = await client.post(`/mail/starred/${_id}`);
-      dispatch(AuthAction.toggleStarred(response.data.mail, routeName));
+      dispatch(MailAction.toggleStarred(response.data.mail, routeName));
     } catch (err) {
       console.log(err);
     }
