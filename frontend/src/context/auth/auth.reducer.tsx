@@ -1,28 +1,36 @@
-import { StateType } from "../mainContext";
 import { AuthActionTypes } from "./auth.action";
 
-interface IAction {
+type IAction = {
   type: string;
-  payload?: any;
-}
+  payload: AuthStateType;
+};
 
-export const authReducer = (state: StateType, action: IAction): StateType => {
+export type AuthStateType = {
+  isLoggedIn: boolean;
+  token: string | null;
+  user: {
+    username: string;
+  } | null;
+};
+
+export const authReducer = (
+  state: AuthStateType,
+  action: IAction
+): AuthStateType => {
   switch (action.type) {
     case AuthActionTypes.LOGIN_SUCCESS: {
       return {
-        ...state,
-        auth: {
-          isLoggedIn: true,
-          token: action.payload.token,
-          user: action.payload.user,
-        },
+        isLoggedIn: true,
+        token: action.payload.token,
+        user: action.payload.user,
       };
     }
 
     case AuthActionTypes.LOGOUT: {
       return {
-        auth: { isLoggedIn: false, user: null, token: null },
-        mails: { inbox: [], sent: [] },
+        isLoggedIn: false,
+        user: null,
+        token: null,
       };
     }
     default:
