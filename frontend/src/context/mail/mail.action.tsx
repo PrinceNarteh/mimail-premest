@@ -1,4 +1,4 @@
-import { MailType } from "./mail.context";
+import { MailType } from "./mail.reducer";
 
 export const MailActionTypes = {
   ADD_MAIL: "ADD_MAIL",
