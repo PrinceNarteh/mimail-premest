@@ -1,11 +1,24 @@
-import { StateType } from "../mainContext";
 import { MailActionTypes } from "./mail.action";
-import { MailType } from "./mail.context";
 
-interface ActionType {
+export type MailType = {
+  _id: string;
+  sender: string;
+  recipient: string;
+  read: boolean;
+  title: string;
+  body: string;
+  starred: boolean;
+};
+
+type ActionType = {
   type: string;
   payload: any;
-}
+};
+
+export type ActionState = {
+  inbox: MailType[];
+  sent: MailType[];
+};
 
 const replaceMail = (arr: MailType[], action: ActionType) => {
   return arr.map((mail: MailType) => {
@@ -21,54 +34,60 @@ const deleteMail = (arr: MailType[], action: ActionType) => {
 };
 
 export const mailReducer = (
-  state: StateType,
+  state: ActionState,
   action: ActionType
-): StateType => {
-  let {
-    mails: { inbox, sent },
-  } = state;
+): ActionState => {
+  let { inbox, sent } = state;
   const routeName = action.payload.routeName.substring(1);
 
   switch (action.type) {
     case MailActionTypes.ADD_MAILS: {
       return {
-        ...state,
-        mails: { inbox: action.payload.inbox, sent: action.payload.sent },
+        inbox: action.payload.inbox,
+        sent: action.payload.sent,
       };
     }
     case MailActionTypes.ADD_MAIL: {
-      const newInbox = [action.payload.mail, ...state.mails.inbox];
-      return { ...state, mails: { inbox: newInbox, sent } };
+      const newInbox = [action.payload.mail, ...state.inbox];
+      return { ...state, inbox: newInbox };
     }
     case MailActionTypes.TOGGLE_STARRED: {
       if (routeName === "inbox") {
-        inbox = replaceMail(inbox, action);
+        const newInbox = replaceMail(inbox, action);
+        return { ...state, inbox: newInbox };
       } else if (routeName === "sent") {
-        sent = replaceMail(sent, action);
+        const newSent = replaceMail(sent, action);
+        return { ...state, sent: newSent };
       } else if (routeName === "starred") {
         const mail = inbox.find((mail) => mail._id === action.payload.mail._id);
         if (mail) {
-          inbox = replaceMail(inbox, action);
+          const newInbox = replaceMail(inbox, action);
+          return { ...state, inbox: newInbox };
         } else {
-          sent = replaceMail(sent, action);
+          const newSent = replaceMail(sent, action);
+          return { ...state, sent: newSent };
         }
       }
-      return { ...state, mails: { inbox, sent } };
+      return state;
     }
     case MailActionTypes.DELETE_MAIL: {
       if (routeName === "inbox") {
-        inbox = deleteMail(inbox, action);
+        const newInbox = deleteMail(inbox, action);
+        return { ...state, inbox: newInbox };
       } else if (routeName === "sent") {
-        sent = deleteMail(sent, action);
+        const newSent = deleteMail(sent, action);
+        return { ...state, inbox: newSent };
       } else if (routeName === "starred") {
         const mail = inbox.find((mail) => mail._id === action.payload.mail._id);
         if (mail) {
-          inbox = deleteMail(inbox, action);
+          const newInbox = deleteMail(inbox, action);
+          return { ...state, inbox: newInbox };
         } else {
-          sent = deleteMail(sent, action);
+          const newSent = deleteMail(sent, action);
+          return { ...state, inbox: newSent };
         }
       }
-      return { ...state, mails: { inbox, sent } };
+      return state;
     }
     default:
       return state;
