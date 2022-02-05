@@ -15,7 +15,7 @@ type ActionType = {
   payload: any;
 };
 
-export type ActionState = {
+export type MailStateType = {
   inbox: MailType[];
   sent: MailType[];
 };
@@ -34,9 +34,9 @@ const deleteMail = (arr: MailType[], action: ActionType) => {
 };
 
 export const mailReducer = (
-  state: ActionState,
+  state: MailStateType,
   action: ActionType
-): ActionState => {
+): MailStateType => {
   let { inbox, sent } = state;
   const routeName = action.payload.routeName.substring(1);
 

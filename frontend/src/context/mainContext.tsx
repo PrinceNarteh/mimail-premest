@@ -1,21 +1,11 @@
 import React, { createContext, useEffect, useReducer } from "react";
 import { useLocalStorage } from "../hooks/useLocalStorage";
-import { authReducer } from "./auth/auth.reducer";
-import { MailType } from "./mail/mail.context";
-import { mailReducer } from "./mail/mail.reducer";
+import { authReducer, AuthStateType } from "./auth/auth.reducer";
+import { mailReducer, MailStateType } from "./mail/mail.reducer";
 
 export type StateType = {
-  auth: {
-    isLoggedIn: boolean;
-    token: string | null;
-    user: {
-      username: string;
-    } | null;
-  };
-  mails: {
-    sent: MailType[];
-    inbox: MailType[];
-  };
+  auth: AuthStateType;
+  mails: MailStateType;
 };
 
 export type ActionType = {
@@ -43,7 +33,7 @@ export const AppContext = createContext<{
   dispatch: () => null,
 });
 
-const mainReducer = ({ auth, mails }, action) => ({
+const mainReducer = ({ auth, mails }: StateType, action: ActionType) => ({
   auth: authReducer(auth, action),
   mails: mailReducer(mails, action),
 });
