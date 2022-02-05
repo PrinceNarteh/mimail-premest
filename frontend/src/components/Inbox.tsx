@@ -1,5 +1,5 @@
 import React from "react";
-import { MailType } from "../context/mail/mail.context";
+import { MailType } from "../context/mail/mail.reducer";
 import { useAppContext } from "../hooks/useAppContext";
 import { MailItem } from "./Mail/MailItem";
 
