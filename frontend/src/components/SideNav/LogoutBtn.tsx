@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { MenuItem } from "./SideNav.style";
+import { useAppContext } from "../../hooks/useAppContext";
+import { AuthAction } from "../../context/auth/auth.action";
 
 interface LogoutBtnProps {
   icon: React.ReactNode;
@@ -8,8 +10,14 @@ interface LogoutBtnProps {
 }
 
 export const LogoutBtn = ({ icon, label }: LogoutBtnProps) => {
+  const { dispatch } = useAppContext();
+
+  const logout = () => {
+    dispatch(AuthAction.logout());
+  };
+
   return (
-    <LogoutBtnStyle>
+    <LogoutBtnStyle onClick={logout}>
       <span className="icon">{icon}</span>
       <span className="text">{label}</span>
     </LogoutBtnStyle>
