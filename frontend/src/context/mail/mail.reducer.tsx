@@ -38,7 +38,6 @@ export const mailReducer = (
   action: ActionType
 ): MailStateType => {
   let { inbox, sent } = state;
-  const routeName = action.payload.routeName.substring(1);
 
   switch (action.type) {
     case MailActionTypes.ADD_MAILS: {
@@ -52,6 +51,7 @@ export const mailReducer = (
       return { ...state, inbox: newInbox };
     }
     case MailActionTypes.TOGGLE_STARRED: {
+      const routeName = action.payload.routeName.substring(1);
       if (routeName === "inbox") {
         const newInbox = replaceMail(inbox, action);
         return { ...state, inbox: newInbox };
@@ -71,6 +71,7 @@ export const mailReducer = (
       return state;
     }
     case MailActionTypes.DELETE_MAIL: {
+      const routeName = action.payload.routeName.substring(1);
       if (routeName === "inbox") {
         const newInbox = deleteMail(inbox, action);
         return { ...state, inbox: newInbox };

@@ -34,8 +34,7 @@ export const Login = () => {
 
     try {
       const result = await client.post("/auth/login", formData);
-      console.log(result.data);
-      // dispatch(AuthAction.login());
+      dispatch(AuthAction.login(result.data));
       setValue({
         ...state,
         ...result.data.user,

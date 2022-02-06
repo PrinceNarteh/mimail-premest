@@ -13,7 +13,6 @@ export const Dashboard = () => {
     const getMails = async () => {
       try {
         const mails = await client.post("/mails/get-mails");
-        console.log(mails);
         dispatch(MailAction.addMails(mails.data));
       } catch (error) {
         console.log(error);
