@@ -13,7 +13,7 @@ import {
   Paragraph,
   RoundedButton,
 } from "../components/Shared/Shared";
-import { AuthActionTypes } from "../context/auth/auth.action";
+import { AuthAction, AuthActionTypes } from "../context/auth/auth.action";
 import { useAppContext } from "../hooks/useAppContext";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 
@@ -34,7 +34,8 @@ export const Login = () => {
 
     try {
       const result = await client.post("/auth/login", formData);
-      dispatch({ type: AuthActionTypes.LOGIN_SUCCESS, payload: result.data });
+      console.log(result.data);
+      // dispatch(AuthAction.login());
       setValue({
         ...state,
         ...result.data.user,

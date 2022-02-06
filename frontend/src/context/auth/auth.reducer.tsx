@@ -9,6 +9,7 @@ export type AuthStateType = {
   isLoggedIn: boolean;
   token: string | null;
   user: {
+    _id: string;
     username: string;
   } | null;
 };

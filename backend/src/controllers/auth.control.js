@@ -34,9 +34,8 @@ userCtrl.signup = async function (req, res) {
   const { username, password } = req.body;
 
   try {
-    // let user = await User.create({ username, password });
-    console.log(req.body);
-    // const token = generateToken(user);
+    let user = await User.create({ username, password });
+    const token = generateToken(user);
     res.status(201).json({ token, user });
   } catch (error) {
     const errObj = handleErrors(error);
@@ -49,7 +48,6 @@ userCtrl.login = async function (req, res) {
 
   try {
     const user = await User.login(username, password);
-    console.log(user);
     const token = generateToken(user);
     res.status(200).json({ token, user });
   } catch (error) {
