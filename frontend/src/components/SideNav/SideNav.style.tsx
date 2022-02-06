@@ -4,7 +4,7 @@ export const Nav = styled.nav`
   position: fixed;
   width: 6rem;
   background-color: teal;
-  height: 100%;
+  height: 100vh;
   transition: 0.3s;
   overflow: hidden;
   padding-right: 1rem;

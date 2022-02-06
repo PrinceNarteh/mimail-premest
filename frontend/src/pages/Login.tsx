@@ -76,10 +76,10 @@ export const Login = () => {
                 onChange={onChangeHandler}
               />
             </FormGroup>
-            <RoundedButton type="submit">Sign Up</RoundedButton>
+            <RoundedButton type="submit">Login</RoundedButton>
           </Form>
           <Paragraph>
-            Already have an account? Login <Link to="/login">Here</Link>
+            Need an account? Register <Link to="/signup">Here</Link>
           </Paragraph>
         </Card>
       </CardContainer>

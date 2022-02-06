@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { AiOutlineStar } from "react-icons/ai";
-import { FaBars, FaTimes } from "react-icons/fa";
+import { FaBars, FaTimes, FaSignOutAlt } from "react-icons/fa";
 import { GrSend } from "react-icons/gr";
 import { MdOutlineForwardToInbox } from "react-icons/md";
 import { RiSpam2Line } from "react-icons/ri";
@@ -11,6 +11,7 @@ import { useAppContext } from "../../hooks/useAppContext";
 import { HiddenInput } from "./HiddenInput";
 import { MenuLink } from "./MenuLink";
 import { Avatar, Brand, Menus, Nav, Toggle } from "./SideNav.style";
+import { LogoutBtn } from "./LogoutBtn";
 
 export const SideNav = () => {
   const {
@@ -55,6 +56,7 @@ export const SideNav = () => {
             icon={<MdOutlineForwardToInbox size={30} />}
           /> */}
         </Menus>
+        <LogoutBtn label="Logout" icon={<FaSignOutAlt size={30} />} />
       </Nav>
     </>
   );

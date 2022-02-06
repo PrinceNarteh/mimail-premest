@@ -41,6 +41,7 @@ export const SignUp = () => {
 
     try {
       const result = await client.post("/auth/signup", formData);
+      console.log(result);
       dispatch({ type: AuthActionTypes.LOGIN_SUCCESS, payload: result.data });
       setValue({
         loading: false,
@@ -50,7 +51,7 @@ export const SignUp = () => {
 
       const redirectPath = location.state?.path || "/";
       navigate(redirectPath, { replace: true });
-    } catch (err) {
+    } catch (err: any) {
       console.log(err);
     }
   };
