@@ -18,13 +18,13 @@ const mailSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
-    title: {
+    subject: {
       type: String,
-      required: [true, "enter a message title"],
+      required: [true, "Please, enter subject for the mail"],
     },
-    body: {
+    message: {
       type: String,
-      required: [true, "enter a message body"],
+      required: [true, "Enter a message body"],
     },
   },
   {

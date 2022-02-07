@@ -11,16 +11,16 @@ import { Content, Sender } from "./MailBox.style";
 interface MailItemProps {
   _id: string;
   sender: string;
-  title: string;
-  body: string;
+  subject: string;
+  message: string;
   starred: boolean;
 }
 
 export const MailItem = ({
   _id,
   sender,
-  title,
-  body,
+  subject,
+  message,
   starred,
 }: MailItemProps) => {
   const { dispatch } = useAppContext();
@@ -29,7 +29,7 @@ export const MailItem = ({
 
   const toggleStarred = async () => {
     try {
-      const response = await client.post(`/mail/starred/${_id}`);
+      const response = await client.post(`/mails/starred/${_id}`);
       dispatch(MailAction.toggleStarred(response.data.mail, routeName));
     } catch (err) {
       console.log(err);
@@ -47,8 +47,8 @@ export const MailItem = ({
       </Action>
       <MailItemStyle to={`${routeName}/${_id}`}>
         <Sender>{sender && capitalize(sender)}</Sender>
-        <Sender>{title}</Sender>
-        <Content>{body}</Content>
+        <Sender>{subject}</Sender>
+        <Content>{message}</Content>
       </MailItemStyle>
     </MailItemContainer>
   );

@@ -12,9 +12,9 @@ export const MailAction = {
     type: MailActionTypes.ADD_MAILS,
     payload: mails,
   }),
-  addMail: (mail: MailType, category: string) => ({
+  addMail: (mail: MailType) => ({
     type: MailActionTypes.ADD_MAIL,
-    payload: { category, mail },
+    payload: mail,
   }),
   deleteMail: (mailId: string, category: string) => ({
     type: MailActionTypes.DELETE_MAIL,

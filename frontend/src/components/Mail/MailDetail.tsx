@@ -34,11 +34,11 @@ export const MailDetail = () => {
         <h3>Sender: </h3> <span>{capitalize(mail?.sender)}</span>
       </Group>
       <Group>
-        <h3>Subject: </h3> <span>{mail?.title}</span>
+        <h3>Subject: </h3> <span>{mail?.subject}</span>
       </Group>
       <Message>
         <h3>Message</h3>
-        <p>{mail?.body}</p>
+        <p>{mail?.message}</p>
       </Message>
     </MailDetailStyle>
   );

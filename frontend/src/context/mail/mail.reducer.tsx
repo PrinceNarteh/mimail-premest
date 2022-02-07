@@ -5,8 +5,8 @@ export type MailType = {
   sender: string;
   recipient: string;
   read: boolean;
-  title: string;
-  body: string;
+  subject: string;
+  message: string;
   starred: boolean;
 };
 
@@ -47,8 +47,9 @@ export const mailReducer = (
       };
     }
     case MailActionTypes.ADD_MAIL: {
-      const newInbox = [action.payload.mail, ...state.inbox];
-      return { ...state, inbox: newInbox };
+      console.log(action.payload);
+      const newSent = [action.payload, ...state.sent];
+      return { ...state, sent: newSent };
     }
     case MailActionTypes.TOGGLE_STARRED: {
       const routeName = action.payload.routeName.substring(1);

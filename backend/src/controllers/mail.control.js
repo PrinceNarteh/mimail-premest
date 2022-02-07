@@ -39,9 +39,7 @@ mailCtrl.send = async function (req, res, next) {
         { $push: { inbox: [mail._id] } }
       );
 
-      res
-        .status(200)
-        .json({ success: true, message: "mail sent with success" });
+      res.status(200).json({ success: true, mail: newMail });
       return;
     }
 
