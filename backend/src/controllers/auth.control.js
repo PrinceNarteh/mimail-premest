@@ -1,6 +1,5 @@
 const User = require("../models/user.model");
 const jwt = require("jsonwebtoken");
-const AppError = require("../helpers/appError");
 
 const handleErrors = (err) => {
   let errors = {};
@@ -12,7 +11,7 @@ const handleErrors = (err) => {
   } else if (err.code === 11000) {
     errors.username = "the username is not available";
     return errors;
-  } else if (err.message.includes("user validation failed")) {
+  } else if (err.message.includes("User validation failed")) {
     Object.values(err.errors).forEach(({ properties }) => {
       errors[properties.path] = properties.message;
     });
@@ -40,7 +39,6 @@ userCtrl.signup = async function (req, res) {
     res.status(201).json({ token, user });
   } catch (error) {
     const errObj = handleErrors(error);
-    console.log(errObj);
     res.status(400).json(errObj);
   }
 };

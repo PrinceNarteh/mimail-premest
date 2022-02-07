@@ -32,7 +32,7 @@ export const SignUp = () => {
   const navigate = useNavigate();
   const location = useLocation() as any;
   const { setValue } = useLocalStorage();
-  const [error, setError] = useState<string>("");
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -55,11 +55,11 @@ export const SignUp = () => {
       const redirectPath = location.state?.path || "/";
       navigate(redirectPath, { replace: true });
     } catch (err: any) {
-      const res = err.response.data.error;
-      const error = res.split(": ")[2];
-      setError(error);
+      setErrors(err.response.data);
     }
   };
+
+  console.log(errors);
 
   return (
     <CardContainer>
@@ -67,7 +67,10 @@ export const SignUp = () => {
         <Heading fontSize={5} textAlign="center">
           MiMail
         </Heading>
-        {error && <Error>{title(error)}</Error>}
+        {errors &&
+          Object.values(errors).map((error, idx) => (
+            <Error key={idx}>{title(error)}</Error>
+          ))}
         <Form onSubmit={onSubmitHandler}>
           <FormGroup>
             <Label htmlFor="username">Username</Label>
