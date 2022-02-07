@@ -2,20 +2,19 @@ import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { client } from "../api/axiosInstance";
 import {
+  Card,
   CardContainer,
+  Form,
   FormGroup,
+  Heading,
   Input,
   Label,
-  Card,
-  Form,
-  Heading,
-  RoundedButton,
   Paragraph,
-  Error,
+  RoundedButton,
 } from "../components/Shared/Shared";
 import { AuthActionTypes } from "../context/auth/auth.action";
-import { title } from "../helper/utils";
 import { useAppContext } from "../hooks/useAppContext";
+import { useError } from "../hooks/useError";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 
 interface User {
@@ -32,7 +31,7 @@ export const SignUp = () => {
   const navigate = useNavigate();
   const location = useLocation() as any;
   const { setValue } = useLocalStorage();
-  const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const { setErrors, displayErrors } = useError();
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -59,18 +58,13 @@ export const SignUp = () => {
     }
   };
 
-  console.log(errors);
-
   return (
     <CardContainer>
       <Card>
         <Heading fontSize={5} textAlign="center">
           MiMail
         </Heading>
-        {errors &&
-          Object.values(errors).map((error, idx) => (
-            <Error key={idx}>{title(error)}</Error>
-          ))}
+        {displayErrors()}
         <Form onSubmit={onSubmitHandler}>
           <FormGroup>
             <Label htmlFor="username">Username</Label>

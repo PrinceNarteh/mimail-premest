@@ -15,6 +15,7 @@ import {
 } from "../components/Shared/Shared";
 import { AuthAction, AuthActionTypes } from "../context/auth/auth.action";
 import { useAppContext } from "../hooks/useAppContext";
+import { useError } from "../hooks/useError";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 
 export const Login = () => {
@@ -23,6 +24,7 @@ export const Login = () => {
   const navigate = useNavigate();
   const location = useLocation() as any;
   const { setValue } = useLocalStorage();
+  const { setErrors, displayErrors } = useError();
 
   const onChangeHandler = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = evt.target;
@@ -42,8 +44,8 @@ export const Login = () => {
 
       const redirectPath = location.state?.path || "/";
       navigate(redirectPath, { replace: true });
-    } catch (err) {
-      console.log(err);
+    } catch (err: any) {
+      setErrors(err.response.data);
     }
   };
 
@@ -58,6 +60,7 @@ export const Login = () => {
             Login
           </Heading>
           <Form onSubmit={onSubmitHandler}>
+            {displayErrors()}
             <FormGroup>
               <Label htmlFor="username">Username</Label>
               <Input
