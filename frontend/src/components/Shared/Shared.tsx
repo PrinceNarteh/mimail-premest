@@ -87,3 +87,10 @@ export const RoundedButton = styled.button`
       padding: 1rem 5rem;
     `}
 `;
+
+export const Error = styled.p`
+  text-align: center;
+  color: crimson;
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+`;

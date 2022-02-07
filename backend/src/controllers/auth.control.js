@@ -40,6 +40,7 @@ userCtrl.signup = async function (req, res) {
     res.status(201).json({ token, user });
   } catch (error) {
     const errObj = handleErrors(error);
+    console.log(errObj);
     res.status(400).json(errObj);
   }
 };

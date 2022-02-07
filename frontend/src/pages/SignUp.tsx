@@ -11,6 +11,7 @@ import {
   Heading,
   RoundedButton,
   Paragraph,
+  Error,
 } from "../components/Shared/Shared";
 import { AuthActionTypes } from "../context/auth/auth.action";
 import { useAppContext } from "../hooks/useAppContext";
@@ -30,6 +31,7 @@ export const SignUp = () => {
   const navigate = useNavigate();
   const location = useLocation() as any;
   const { setValue } = useLocalStorage();
+  const [error, setError] = useState<string>("");
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -52,7 +54,9 @@ export const SignUp = () => {
       const redirectPath = location.state?.path || "/";
       navigate(redirectPath, { replace: true });
     } catch (err: any) {
-      console.log(err);
+      const res = err.response.data.error;
+      const error = res.split(": ")[2];
+      setError(error);
     }
   };
 
@@ -62,6 +66,7 @@ export const SignUp = () => {
         <Heading fontSize={5} textAlign="center">
           MiMail
         </Heading>
+        {error && <Error>{error}</Error>}
         <Form onSubmit={onSubmitHandler}>
           <FormGroup>
             <Label htmlFor="username">Username</Label>
