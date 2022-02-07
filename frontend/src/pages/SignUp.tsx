@@ -14,6 +14,7 @@ import {
   Error,
 } from "../components/Shared/Shared";
 import { AuthActionTypes } from "../context/auth/auth.action";
+import { title } from "../helper/utils";
 import { useAppContext } from "../hooks/useAppContext";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 
@@ -66,7 +67,7 @@ export const SignUp = () => {
         <Heading fontSize={5} textAlign="center">
           MiMail
         </Heading>
-        {error && <Error>{error}</Error>}
+        {error && <Error>{title(error)}</Error>}
         <Form onSubmit={onSubmitHandler}>
           <FormGroup>
             <Label htmlFor="username">Username</Label>
