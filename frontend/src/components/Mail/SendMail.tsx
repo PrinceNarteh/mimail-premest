@@ -11,6 +11,7 @@ import {
   RoundedButton,
   Textarea,
 } from "../Shared/Shared";
+import { GrSend } from "react-icons/gr";
 
 export const SendMail = () => {
   const [formData, setFormData] = useState({
@@ -72,7 +73,9 @@ export const SendMail = () => {
             }
           ></Textarea>
         </FormGroup>
-        <RoundedButton>Send</RoundedButton>
+        <RoundedButton>
+          <GrSend size={15} /> Send
+        </RoundedButton>
       </form>
     </SendMailStyle>
   );

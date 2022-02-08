@@ -28,7 +28,11 @@ export const MailDetail = () => {
   return (
     <MailDetailStyle>
       <Actions>
-        {mail?.starred ? <AiFillStar size={20} /> : <AiOutlineStar size={20} />}
+        {mail?.starred ? (
+          <AiFillStar size={20} color="#fff" />
+        ) : (
+          <AiOutlineStar size={20} color="#fff" />
+        )}
       </Actions>
       <Group>
         <h3>Sender: </h3> <span>{capitalize(mail?.sender)}</span>

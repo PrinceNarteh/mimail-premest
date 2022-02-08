@@ -12,6 +12,7 @@ import { HiddenInput } from "./HiddenInput";
 import { MenuLink } from "./MenuLink";
 import { Avatar, Brand, Menus, Nav, Toggle } from "./SideNav.style";
 import { LogoutBtn } from "./LogoutBtn";
+import { FiSend } from "react-icons/fi";
 
 export const SideNav = () => {
   const {
@@ -39,11 +40,7 @@ export const SideNav = () => {
             to="/inbox"
             icon={<MdOutlineForwardToInbox size={30} />}
           />
-          <MenuLink
-            label="Sent"
-            to="/sent"
-            icon={<GrSend size={30} color="#fff" />}
-          />
+          <MenuLink label="Sent" to="/sent" icon={<FiSend size={30} />} />
           <MenuLink
             label="Starred"
             to="/starred"
