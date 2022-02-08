@@ -99,14 +99,15 @@ mailCtrl.getMails = async (req, res, next) => {
 };
 
 mailCtrl.deleteMail = async (req, res, next) => {
-  const mailId = req.params;
+  const { mailId } = req.params;
 
   try {
-    const mail = await Mail.findById(mailId);
+    const mail = await Mail.findByIdAndDelete(mailId);
     if (!mail) {
-      return res.status(404).json({ error: "Mail not found" });
+      return res
+        .status(404)
+        .json({ success: false, message: `mail with ID ${mailId} not found` });
     }
-    await Mail.findByIdAndDelete(mailId);
     res
       .status(200)
       .json({ success: true, message: "Mail deleted successfully." });

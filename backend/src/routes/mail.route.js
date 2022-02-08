@@ -6,13 +6,15 @@ const {
   sync,
   getMails,
   toggleStarred,
+  deleteMail,
 } = require("../controllers/mail.control");
-const { authRequired } = require("../middlewares/auth.middleware");
+const { authRequired } = require("../middleware/auth.middleware");
 
 router.post("/", authRequired, sync);
 router.post("/send", authRequired, send);
 router.post("/deliver", authRequired, deliver);
-router.post("/get-mails", authRequired, getMails);
+router.delete("/:mailId", authRequired, deleteMail);
+router.get("/get-mails", authRequired, getMails);
 router.post("/starred/:mailId", authRequired, toggleStarred);
 
 module.exports = router;
